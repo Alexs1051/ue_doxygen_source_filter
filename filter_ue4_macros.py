@@ -1,7 +1,5 @@
-#!env python3
 import re
 import sys
-
 
 # This is from https://stackoverflow.com/questions/5454322/python-how-to-match-nested-parentheses-with-regex
 def paren_matcher (n):
@@ -28,7 +26,7 @@ content = file.read()
 
 # Do a regular expression to replace all UE4 macros, include balanced params
 # TODO: Remove C++ comments!
-regex = '^(\s*)((?:UFUNCTION|UCLASS|UPROPERTY|UENUM)\s*\('+paren_matcher(25)+'\))'
+regex = r'^(\s*)((?:UFUNCTION|UCLASS|UPROPERTY|UENUM)\s*\('+paren_matcher(25)+r'\))'
 
 content = re.sub(regex, r'\1/* UE4 Macro: \2 */', content, flags=re.MULTILINE)
 
